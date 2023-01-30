@@ -1,6 +1,7 @@
-package com.example.telegrambot2023.editing;
+package com.example.telegrambot2023.Jsoup;
 
 import com.example.telegrambot2023.dto.TatoebaData;
+import com.example.telegrambot2023.dto.TelegramResponseType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -13,7 +14,7 @@ import java.io.IOException;
 public class Parsing {
 
 
-    public void convert(String word) throws IOException {
+    public TelegramResponseType convert(String word) throws IOException {
         Document document = Jsoup.connect("https://tatoeba.org/en/sentences/search?from=eng&query=" + word + "&to=tur").get();
 
         Elements div = document.select("div");
@@ -23,9 +24,20 @@ public class Parsing {
         String finalText = s1.split(", \\[\\{")[0];
 
         TatoebaData student = new ObjectMapper().readValue(finalText, TatoebaData.class);
-        System.out.println(word);
-        System.out.println("~~~~~~~~~~~~~~~");
-        System.out.println(student.getText());
+        String original = student.getText();
+        String translation;
+        if (student.getTranslations().get(0).size() > 0) {
+            translation = student.getTranslations().get(0).get(0).getText();
+        } else {
+            translation = student.getTranslations().get(1).get(0).getText();
+        }
+
+
+        return TelegramResponseType.builder()
+                .fromLanguage(original)
+                .toLanguage(translation)
+                .build();
+
     }
 
 

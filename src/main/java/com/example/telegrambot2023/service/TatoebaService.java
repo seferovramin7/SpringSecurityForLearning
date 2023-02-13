@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class TatoebaService {
@@ -20,11 +21,13 @@ public class TatoebaService {
     public String gtExample(String word, String from, String to) throws IOException {
         Document document = Jsoup.connect("https://tatoeba.org/en/sentences/search?from=" + from + "&query=" + word + "&to=" + to).get();
         Elements div = document.select("div");
-        String text = div.attr("ng-init");
-        String s = text.split("vm.init\\(\\[], ")[1];
+        List<String> strings = div.eachAttr("ng-init");
+        int limit = strings.size();
+        int random = (int) (Math.random() * limit);
+        String attr = strings.get(random);
+        String s = attr.split("vm.init\\(\\[], ")[1];
         String s1 = s.split("\t")[0];
         String finalText = s1.split(", \\[\\{")[0];
-
         TatoebaData student = new ObjectMapper().readValue(finalText, TatoebaData.class);
         String original = student.getText();
         String translation;

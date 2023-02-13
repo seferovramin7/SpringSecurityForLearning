@@ -16,18 +16,18 @@ import javax.persistence.Id;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TatoebaEntity {
+public class TelegramEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String text;
+    private Long chatId;
+
+    private String chatStage;
+
+    private String fromLang;
+
+    private String toLang;
 
 
-//
-//    private Long CHAT_ID;
-//
-//    private String FROM_LANG;
-//
-//    private String TO_LANG;
 }

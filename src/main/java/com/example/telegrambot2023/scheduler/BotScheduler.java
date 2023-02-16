@@ -5,7 +5,7 @@ import com.example.telegrambot2023.dto.TelegramResponseType;
 import com.example.telegrambot2023.entity.ChatStage;
 import com.example.telegrambot2023.entity.TelegramEntity;
 import com.example.telegrambot2023.repository.TatoRepo;
-import com.example.telegrambot2023.service.TatoebaService;
+import com.example.telegrambot2023.service.ApiService;
 import com.example.telegrambot2023.telegram.send.SendMessageResponseDTO;
 import com.example.telegrambot2023.telegram.send.text.SendMessageDTO;
 import com.example.telegrambot2023.telegram.update.TelegramResponseDTO;
@@ -32,7 +32,7 @@ public class BotScheduler {
     Parsing parsing;
 
     @Autowired
-    TatoebaService tatoebaService;
+    ApiService tatoebaService;
 
     @Autowired
     TatoRepo repository;

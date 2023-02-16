@@ -2,7 +2,9 @@ package com.example.telegrambot2023.Jsoup;
 
 import com.example.telegrambot2023.dto.TatoebaData;
 import com.example.telegrambot2023.dto.TelegramResponseType;
+import com.example.telegrambot2023.service.JsoupService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -13,7 +15,9 @@ import java.util.List;
 
 
 @Service
+
 public class Parsing {
+
 
 
     public TelegramResponseType convert(String languageCode, String word, String from, String to) throws IOException {
@@ -28,8 +32,8 @@ public class Parsing {
             String s = attr.split("vm.init\\(\\[], ")[1];
             String s1 = s.split("\t")[0];
             String finalText = s1.split(", \\[\\{")[0];
-
             TatoebaData student = new ObjectMapper().readValue(finalText, TatoebaData.class);
+
             String original = student.getText();
             String translation;
             if (student.getTranslations().get(0).size() > 0) {

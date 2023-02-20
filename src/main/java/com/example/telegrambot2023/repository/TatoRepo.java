@@ -8,3 +8,4 @@ import org.springframework.stereotype.Repository;
 public interface TatoRepo extends CrudRepository <TelegramEntity,Long>{
     TelegramEntity findByChatId(Long chatId);
 }
+

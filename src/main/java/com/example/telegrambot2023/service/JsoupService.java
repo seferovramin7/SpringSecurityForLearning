@@ -1,7 +1,7 @@
 package com.example.telegrambot2023.service;
 
-import com.example.telegrambot2023.dto.JsoupResponseType;
 import com.example.telegrambot2023.dto.TatoebaData;
+import com.example.telegrambot2023.dto.TelegramResponseType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class JsoupService {
 
-    public JsoupResponseType generateData(String word, String from, String to) throws IOException {
+    public TelegramResponseType generateData(String word, String from, String to) throws IOException {
         Document document = Jsoup.connect("https://tatoeba.org/en/sentences/search?from=" + from + "&query=" + word + "&to=" + to).get();
         Elements div = document.select("div");
         List<String> strings = div.eachAttr("ng-init");
@@ -32,11 +32,9 @@ public class JsoupService {
         } else {
             translation = data.getTranslations().get(1).get(0).getText();
         }
-        return JsoupResponseType.builder()
-                .text(original)
-                .translation(translation)
+        return TelegramResponseType.builder()
+                .fromLanguage(original)
+                .toLanguage(translation)
                 .build();
-
-
     }
 }

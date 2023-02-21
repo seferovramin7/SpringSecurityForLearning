@@ -17,6 +17,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.config.annotation.authentication.configurers.provisioning.UserDetailsManagerConfigurer;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
@@ -34,6 +35,8 @@ public class JwtAuthenticationController {
 
 	@Autowired
 	private UserDetailsService jwtInMemoryUserDetailsService;
+
+	private final PasswordEncoder passwordEncoder;
 
 	private final UserRepo userRepo;
 
@@ -54,7 +57,7 @@ public class JwtAuthenticationController {
 	public ResponseEntity signUp (@RequestBody SignUpDto dto){
 		UserEntity userEntity = UserEntity.builder()
 				.email(dto.getEmail())
-				.password(dto.getPassword())
+				.password(passwordEncoder.encode(dto.getPassword()))
 				.role(dto.getRole())
 				.build();
 		userRepo.save(userEntity);

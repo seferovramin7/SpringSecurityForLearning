@@ -2,7 +2,7 @@ package com.example.telegrambot2023.scheduler;
 
 import com.example.telegrambot2023.Jsoup.Parsing;
 import com.example.telegrambot2023.dto.TelegramResponseType;
-import com.example.telegrambot2023.entity.ChatStage;
+import com.example.telegrambot2023.enums.ChatStage;
 import com.example.telegrambot2023.entity.TelegramEntity;
 import com.example.telegrambot2023.repository.TatoRepo;
 import com.example.telegrambot2023.service.ApiService;

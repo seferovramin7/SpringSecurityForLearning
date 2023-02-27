@@ -1,5 +1,6 @@
 package com.example.telegrambot2023.service;
 
+import com.example.telegrambot2023.Jsoup.JsoupService;
 import com.example.telegrambot2023.dto.TelegramResponseType;
 import com.example.telegrambot2023.repository.TatoRepo;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.example.telegrambot2023.entity;
+package com.example.telegrambot2023.enums;
 
 public enum ChatStage {
     FROM_LANG,

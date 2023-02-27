@@ -1,24 +1,17 @@
 package com.example.telegrambot2023.Jsoup;
 
-import com.example.telegrambot2023.dto.TatoebaData;
 import com.example.telegrambot2023.dto.TelegramResponseType;
-import com.example.telegrambot2023.service.JsoupService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.List;
 
 
 @Service
-
+@RequiredArgsConstructor
 public class Parsing {
 
-    private JsoupService jsoupService;
+    private final JsoupService jsoupService;
 
 
 

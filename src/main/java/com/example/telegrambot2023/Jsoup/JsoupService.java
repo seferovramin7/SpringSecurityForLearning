@@ -1,4 +1,4 @@
-package com.example.telegrambot2023.service;
+package com.example.telegrambot2023.Jsoup;
 
 import com.example.telegrambot2023.dto.TatoebaData;
 import com.example.telegrambot2023.dto.TelegramResponseType;

@@ -32,8 +32,7 @@ public class JwtAuthenticationController {
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
 
-	@Autowired
-	private UserDetailsService jwtInMemoryUserDetailsService;
+	private final UserDetailsService jwtInMemoryUserDetailsService;
 
 	private final PasswordEncoder passwordEncoder;
 
@@ -59,7 +58,7 @@ public class JwtAuthenticationController {
 	}
 
 	@RequestMapping(value = "/signup",method = RequestMethod.POST)
-	public ResponseEntity signUp (@RequestBody SignUpDto dto){
+	public ResponseEntity<?> signUp (@RequestBody SignUpDto dto){
 
 		UserEntity entity = userRepo.findUsersEntityByEmail(dto.getEmail());
 		if (entity == null) {

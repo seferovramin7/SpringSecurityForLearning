@@ -28,6 +28,4 @@ public class UserEntity {
 
     @NotNull
     private String role;
-
-
 }
